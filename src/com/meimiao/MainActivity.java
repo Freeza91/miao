@@ -8,7 +8,6 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -21,7 +20,9 @@ import com.uis.SettingsFragment;
 
 public class MainActivity extends Activity {
 
-	private Fragment fragment;
+	private Fragment homeFragment, groupFragment, notiFragment,
+			settingsFragment;
+	private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
 	private FragmentManager fm = null;
 	private FragmentTransaction ft = null;
 	private LinearLayout layout_home = null, layout_group = null,
@@ -49,11 +50,13 @@ public class MainActivity extends Activity {
 
 	@SuppressLint("NewApi")
 	private void initFragment() {
-		fragment = new HomeFragment();
+		homeFragment = new HomeFragment();
 		fm = getFragmentManager();
 		ft = fm.beginTransaction();
-		ft.add(R.id.fragement, fragment, "home");
+		ft.add(R.id.fragement, homeFragment, "home");
 		ft.commit();
+
+		fragments.add(homeFragment);
 	}
 	
 	private void addLayoutListener(){
@@ -93,39 +96,66 @@ public class MainActivity extends Activity {
 		@SuppressLint("NewApi") @Override
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			if (fm.findFragmentByTag(tag) != null) {
-				fragment = fm.findFragmentByTag(tag);
-				ft.show(fragment);
-				// fm.popBackStack();
-				// return;
-			}
-			Log.d("tag", tag);
-
 			ft = fm.beginTransaction();
+
 			switch (tag) {
 			case "home":
-				fragment = new HomeFragment();
+				if (homeFragment == null) {
+					homeFragment = new HomeFragment();
+					fragments.add(homeFragment);
+					ft.add(R.id.fragement, homeFragment, tag);
+				} else if (fm.findFragmentByTag(tag) != null) {
+					ft.show(homeFragment);
+				}
 				SetNav(0);
 				break;
 			case "group":
-				fragment = new GroupFragment();
+				if (groupFragment == null) {
+					groupFragment = new GroupFragment();
+					fragments.add(groupFragment);
+					ft.add(R.id.fragement, groupFragment, tag);
+				} else if (fm.findFragmentByTag(tag) != null) {
+					ft.show(groupFragment);
+				}
 				SetNav(1);
 				break;
 			case "notify":
-				fragment = new NotifFragment();
+				if (notiFragment == null) {
+					notiFragment = new NotifFragment();
+					fragments.add(notiFragment);
+					ft.add(R.id.fragement, notiFragment, tag);
+				} else if (fm.findFragmentByTag(tag) != null) {
+					ft.show(notiFragment);
+				}
 				SetNav(2);
 				break;
 			case "settings":
-				fragment = new SettingsFragment();
+				if (settingsFragment == null) {
+					settingsFragment = new SettingsFragment();
+					fragments.add(settingsFragment);
+					ft.add(R.id.fragement, settingsFragment, tag);
+				} else if (fm.findFragmentByTag(tag) != null) {
+					ft.show(settingsFragment);
+				}
 				SetNav(3);
 				break;
 			default:
 				break;
 			}
-			ft.add(R.id.fragement, fragment, tag);
-			// ft.commit();
+			hideOthers(tag);
+			ft.commit();
 		}
 
+		@SuppressLint("NewApi")
+		private void hideOthers(String tag) {
+
+			for (int i = 0; i < fragments.size(); i++) {
+				Fragment fragment = fragments.get(i);
+				if (fragment != null && fragment.getTag() != tag) {
+					ft.hide(fragment);
+				}
+			}
+		}
 		@SuppressLint("NewApi")
 		private void SetNav(int num) {
 			LinearLayout layout = null;
