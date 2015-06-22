@@ -1,23 +1,32 @@
 package com.uis;
 
+import helpers.StatusCode;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.adapter.LoadMoreAdapter;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.meimiao.PostCameraPictures;
+import com.meimiao.PostShortMessage;
 import com.meimiao.R;
 import com.models.V2exApiJsonExampleModel;
 import com.nets.MainActivityHttp;
@@ -27,7 +36,7 @@ public class HomeFragment extends Fragment implements
 		LoadMoreListView.OnLoadMore,
 		OnRefreshListener,
 		Response.Listener<ArrayList<V2exApiJsonExampleModel>>,
-		Response.ErrorListener {
+		Response.ErrorListener, StatusCode {
 
 	private RequestQueue mQueue;
 
@@ -35,6 +44,7 @@ public class HomeFragment extends Fragment implements
 	private LoadMoreListView loadmore;
 	private ArrayList<HashMap<String, String>> list;
 	private LoadMoreAdapter adapter;
+	private ImageButton carame, choice, dynamic;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +54,7 @@ public class HomeFragment extends Fragment implements
 		View view = inflater.inflate(R.layout.home, container, false);
 		initView(view);
 		initData();
+		addListener();
 
 		return view;
 	}
@@ -52,9 +63,10 @@ public class HomeFragment extends Fragment implements
 		refresh = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
 		loadmore = (LoadMoreListView) view
 				.findViewById(R.id.load_more_listview);
+		carame = (ImageButton) view.findViewById(R.id.camera);
+		choice = (ImageButton) view.findViewById(R.id.choice);
+		dynamic = (ImageButton) view.findViewById(R.id.dynamic);
 		
-		refresh.setOnRefreshListener(this);
-		loadmore.setLoadMoreListen(this);
 	}
 
 	private void initData() {
@@ -69,6 +81,35 @@ public class HomeFragment extends Fragment implements
 		}
 		adapter = new LoadMoreAdapter(getActivity(), list);
 		loadmore.setAdapter(adapter);
+	}
+
+	private void addListener() {
+		refresh.setOnRefreshListener(this);
+		loadmore.setLoadMoreListen(this);
+
+		carame.setOnLongClickListener(new OnLongClickListener() {
+
+			@Override
+			public boolean onLongClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getActivity(),
+						PostShortMessage.class);
+				startActivityForResult(intent, POST_MESSAGE_SUCCESS);
+				return false;
+			}
+		});
+
+		carame.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(getActivity(),
+						PostCameraPictures.class);
+				startActivityForResult(intent, POST_CAMERA_SUCCESS);
+			}
+		});
+
 	}
 
 	@Override
@@ -87,7 +128,6 @@ public class HomeFragment extends Fragment implements
 	@Override
 	public void onErrorResponse(VolleyError error) {
 		// TODO Auto-generated method stub
-
 	}
 
 	public void onResponse(ArrayList<V2exApiJsonExampleModel> response) {
@@ -114,7 +154,27 @@ public class HomeFragment extends Fragment implements
 		mQueue.add(new MainActivityHttp(this, this));
 
 		refresh.setRefreshing(false);
+	}
 
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		switch (resultCode) {
+		case POST_MESSAGE_SUCCESS:
+			Toast.makeText(getActivity(), "发布消息成功", Toast.LENGTH_SHORT).show();
+			break;
+		case QUIT_POST_MESSAGE:
+			Toast.makeText(getActivity(), "放弃发布消息", Toast.LENGTH_SHORT).show();
+			break;
+		case POST_CAMERA_SUCCESS:
+			Toast.makeText(getActivity(), "发布图片成功", Toast.LENGTH_SHORT).show();
+			break;
+		case QUIT_POST_CAMERA:
+			Toast.makeText(getActivity(), "放弃发布图片", Toast.LENGTH_SHORT).show();
+			break;
+		default:
+			break;
+		}
 	}
 
 }
