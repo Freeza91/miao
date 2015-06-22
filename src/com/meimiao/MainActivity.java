@@ -8,28 +8,18 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
-import com.models.V2exApiJsonExampleModel;
-import com.nets.MainActivityHttp;
 import com.uis.GroupFragment;
 import com.uis.HomeFragment;
 import com.uis.NotifFragment;
 import com.uis.SettingsFragment;
 
-public class MainActivity extends Activity implements
-		Response.Listener<ArrayList<V2exApiJsonExampleModel>>,
-		Response.ErrorListener {
+public class MainActivity extends Activity {
 
-	private RequestQueue mQueue;
 
 	private Fragment homeFragment, groupFragment, notiFragment,
 			settingsFragment;
@@ -57,8 +47,7 @@ public class MainActivity extends Activity implements
 
 		initFragment();
 		addLayoutListener();
-		mQueue = Volley.newRequestQueue(this);
-		mQueue.add(new MainActivityHttp(this, this));
+
 	}
 
 	@SuppressLint("NewApi")
@@ -191,19 +180,5 @@ public class MainActivity extends Activity implements
 		}
 	}
 
-	@Override
-	public void onErrorResponse(VolleyError error) {
-		// TODO Auto-generated method stub
 
-	}
-
-	public void onResponse(ArrayList<V2exApiJsonExampleModel> response) {
-		// TODO Auto-generated method stub
-		ArrayList<V2exApiJsonExampleModel> models = response;
-		for (int i = 0; i < models.size(); i++) {
-			V2exApiJsonExampleModel model = models.get(i);
-			Log.d("id", model.id);
-			Log.d("inner id", model.member.id);
-		}
-	}
 }
