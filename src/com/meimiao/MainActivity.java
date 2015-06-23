@@ -113,7 +113,7 @@ public class MainActivity extends Activity {
 				break;
 			case "group":
 				if (groupFragment == null) {
-					groupFragment = new GroupFragment();
+					groupFragment = new GroupFragment(MainActivity.this);
 					fragments.add(groupFragment);
 					ft.add(R.id.fragement, groupFragment, tag);
 				} else if (fm.findFragmentByTag(tag) != null) {
@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
 				break;
 			case "notify":
 				if (notiFragment == null) {
-					notiFragment = new NotifFragment();
+					notiFragment = new NotifFragment(MainActivity.this);
 					fragments.add(notiFragment);
 					ft.add(R.id.fragement, notiFragment, tag);
 				} else if (fm.findFragmentByTag(tag) != null) {
@@ -133,7 +133,7 @@ public class MainActivity extends Activity {
 				break;
 			case "settings":
 				if (settingsFragment == null) {
-					settingsFragment = new SettingsFragment();
+					settingsFragment = new SettingsFragment(MainActivity.this);
 					fragments.add(settingsFragment);
 					ft.add(R.id.fragement, settingsFragment, tag);
 				} else if (fm.findFragmentByTag(tag) != null) {
@@ -179,6 +179,5 @@ public class MainActivity extends Activity {
 			}
 		}
 	}
-
 
 }

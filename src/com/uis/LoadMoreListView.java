@@ -82,7 +82,7 @@ public class LoadMoreListView extends ListView implements OnScrollListener {
 
 	public void loadMoreComplete() {
 		footer.setVisibility(GONE);
-		isLoading = true;
+		isLoading = false;
 		Toast.makeText(context, "load stop ....", Toast.LENGTH_SHORT).show();
 	}
 
