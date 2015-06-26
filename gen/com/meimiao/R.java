@@ -1883,7 +1883,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a0035;
         public static final int action_mode_bar_stub=0x7f0a0034;
         public static final int action_mode_close_button=0x7f0a0028;
-        public static final int action_settings=0x7f0a0072;
+        public static final int action_settings=0x7f0a0073;
         public static final int activity_chooser_view_content=0x7f0a0029;
         public static final int always=0x7f0a0014;
         public static final int base_fragment_load_more_listview=0x7f0a004a;
@@ -1891,7 +1891,7 @@ containing a value of this type.
         public static final int beginning=0x7f0a001b;
         public static final int bottom=0x7f0a001e;
         public static final int camera=0x7f0a004f;
-        public static final int camera_image=0x7f0a006e;
+        public static final int camera_image=0x7f0a006d;
         public static final int checkbox=0x7f0a0031;
         public static final int choice=0x7f0a004d;
         public static final int collapseActionView=0x7f0a0015;
@@ -1906,8 +1906,6 @@ containing a value of this type.
         public static final int end=0x7f0a001c;
         public static final int expand_activities_button=0x7f0a002a;
         public static final int expanded_menu=0x7f0a0030;
-        public static final int fans_num=0x7f0a006b;
-        public static final int followers_num=0x7f0a0068;
         public static final int fragement=0x7f0a0043;
         public static final int group=0x7f0a0057;
         public static final int group_details=0x7f0a004b;
@@ -1936,10 +1934,9 @@ containing a value of this type.
         public static final int notify_details=0x7f0a0060;
         public static final int notify_image=0x7f0a005b;
         public static final int notify_info=0x7f0a005c;
-        public static final int picture_num=0x7f0a0062;
-        public static final int post_btn=0x7f0a0071;
-        public static final int post_camera_btn=0x7f0a006f;
-        public static final int post_message=0x7f0a0070;
+        public static final int post_btn=0x7f0a0070;
+        public static final int post_camera_btn=0x7f0a006e;
+        public static final int post_message=0x7f0a006f;
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
         public static final int qq=0x7f0a0047;
@@ -1958,15 +1955,20 @@ containing a value of this type.
         public static final int settings=0x7f0a005d;
         public static final int settings_fans=0x7f0a006a;
         public static final int settings_fans_divider=0x7f0a006c;
+        public static final int settings_fans_num=0x7f0a006b;
         public static final int settings_followers=0x7f0a0067;
         public static final int settings_followers_divider=0x7f0a0069;
-        public static final int settings_fragment=0x7f0a006d;
+        public static final int settings_followers_num=0x7f0a0068;
+        public static final int settings_fragment_viewpager=0x7f0a0072;
         public static final int settings_image=0x7f0a005e;
         public static final int settings_info=0x7f0a005f;
         public static final int settings_picture=0x7f0a0061;
         public static final int settings_picture_divider=0x7f0a0063;
+        public static final int settings_picture_num=0x7f0a0062;
         public static final int settings_topic=0x7f0a0064;
         public static final int settings_topic_divider=0x7f0a0066;
+        public static final int settings_topic_num=0x7f0a0065;
+        public static final int settings_viewpager=0x7f0a0071;
         public static final int shortcut=0x7f0a0032;
         public static final int showCustom=0x7f0a0010;
         public static final int showHome=0x7f0a0011;
@@ -1978,7 +1980,6 @@ containing a value of this type.
         public static final int title=0x7f0a002f;
         public static final int top=0x7f0a001f;
         public static final int top_action_bar=0x7f0a0025;
-        public static final int topic_num=0x7f0a0065;
         public static final int up=0x7f0a0001;
         public static final int useLogo=0x7f0a0013;
         public static final int viewpager=0x7f0a0044;
@@ -2056,11 +2057,15 @@ containing a value of this type.
         public static final int post_camera=0x7f03002a;
         public static final int post_short_message=0x7f03002b;
         public static final int settings=0x7f03002c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002d;
-        public static final int view_pager_01=0x7f03002e;
-        public static final int view_pager_02=0x7f03002f;
-        public static final int view_pager_03=0x7f030030;
-        public static final int view_pager_04=0x7f030031;
+        public static final int settings_fragment_fans=0x7f03002d;
+        public static final int settings_fragment_follower=0x7f03002e;
+        public static final int settings_fragment_picture=0x7f03002f;
+        public static final int settings_fragment_topic=0x7f030030;
+        public static final int support_simple_spinner_dropdown_item=0x7f030031;
+        public static final int view_pager_01=0x7f030032;
+        public static final int view_pager_02=0x7f030033;
+        public static final int view_pager_03=0x7f030034;
+        public static final int view_pager_04=0x7f030035;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;

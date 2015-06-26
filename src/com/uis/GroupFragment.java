@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.adapter.LoadMoreAdapter;
+import com.adapters.LoadMoreAdapter;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -34,10 +34,9 @@ public class GroupFragment extends BaseFragment implements
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View view = super.onCreateView(inflater, container, savedInstanceState);
-		initData(); // 这里的一个坑，必须是父类的元素初始化完成后才能使用继承来的控件，被坑了！！
+		initData();
 		return view;
 	}
-
 
 	public GroupFragment(Context context) {
 		this.context = context;
@@ -48,8 +47,9 @@ public class GroupFragment extends BaseFragment implements
 		mQueue.add(new MainActivityHttp(this, this));
 
 		list = new ArrayList<HashMap<String, String>>();
+
 		for (int i = 0; i < 20; i++) {
-			HashMap<String, String> map = new HashMap<String, String>();
+			map = new HashMap<String, String>();
 			map.put("key", "this is " + i);
 			list.add(map);
 		}

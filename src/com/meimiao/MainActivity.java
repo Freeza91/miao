@@ -3,11 +3,12 @@ package com.meimiao;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -18,8 +19,7 @@ import com.uis.HomeFragment;
 import com.uis.NotifFragment;
 import com.uis.SettingsFragment;
 
-public class MainActivity extends Activity {
-
+public class MainActivity extends FragmentActivity {
 
 	private Fragment homeFragment, groupFragment, notiFragment,
 			settingsFragment;
@@ -47,18 +47,16 @@ public class MainActivity extends Activity {
 
 		initFragment();
 		addLayoutListener();
-
 	}
 
 	@SuppressLint("NewApi")
 	private void initFragment() {
 		homeFragment = new HomeFragment();
-		fm = getFragmentManager();
+		fragments.add(homeFragment);
+		fm = getSupportFragmentManager();
 		ft = fm.beginTransaction();
 		ft.add(R.id.fragement, homeFragment, "home");
 		ft.commit();
-
-		fragments.add(homeFragment);
 	}
 	
 	private void addLayoutListener(){
@@ -104,8 +102,8 @@ public class MainActivity extends Activity {
 			case "home":
 				if (homeFragment == null) {
 					homeFragment = new HomeFragment();
-					fragments.add(homeFragment);
 					ft.add(R.id.fragement, homeFragment, tag);
+					fragments.add(homeFragment);
 				} else if (fm.findFragmentByTag(tag) != null) {
 					ft.show(homeFragment);
 				}
@@ -113,9 +111,10 @@ public class MainActivity extends Activity {
 				break;
 			case "group":
 				if (groupFragment == null) {
+					Log.d("hello", tag);
 					groupFragment = new GroupFragment(MainActivity.this);
-					fragments.add(groupFragment);
 					ft.add(R.id.fragement, groupFragment, tag);
+					fragments.add(groupFragment);
 				} else if (fm.findFragmentByTag(tag) != null) {
 					ft.show(groupFragment);
 				}
@@ -124,8 +123,8 @@ public class MainActivity extends Activity {
 			case "notify":
 				if (notiFragment == null) {
 					notiFragment = new NotifFragment(MainActivity.this);
-					fragments.add(notiFragment);
 					ft.add(R.id.fragement, notiFragment, tag);
+					fragments.add(notiFragment);
 				} else if (fm.findFragmentByTag(tag) != null) {
 					ft.show(notiFragment);
 				}
@@ -134,8 +133,8 @@ public class MainActivity extends Activity {
 			case "settings":
 				if (settingsFragment == null) {
 					settingsFragment = new SettingsFragment(MainActivity.this);
-					fragments.add(settingsFragment);
 					ft.add(R.id.fragement, settingsFragment, tag);
+					fragments.add(settingsFragment);
 				} else if (fm.findFragmentByTag(tag) != null) {
 					ft.show(settingsFragment);
 				}
@@ -152,7 +151,7 @@ public class MainActivity extends Activity {
 		private void hideOthers(String tag) {
 
 			for (int i = 0; i < fragments.size(); i++) {
-				Fragment fragment = fragments.get(i);
+				Fragment fragment = (Fragment) fragments.get(i);
 				if (fragment != null && fragment.getTag() != tag) {
 					ft.hide(fragment);
 				}

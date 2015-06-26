@@ -43,7 +43,7 @@
                 android:text="这里有很多养猫的人"
                 android:textSize="25sp" />
 
-</LinearLayout>
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/qq"

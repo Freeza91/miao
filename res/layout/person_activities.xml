@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:orientation="vertical" >
     
@@ -18,7 +18,7 @@
             android:orientation="vertical">
             
             <TextView 
-                android:id="@+id/picture_num"
+                android:id="@+id/settings_picture_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="11"
@@ -49,7 +49,7 @@
             android:orientation="vertical">
             
             <TextView 
-                android:id="@+id/topic_num"
+                android:id="@+id/settings_topic_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="11"
@@ -78,7 +78,7 @@
             android:orientation="vertical">
             
             <TextView 
-                android:id="@+id/followers_num"
+                android:id="@+id/settings_followers_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="11"
@@ -107,7 +107,7 @@
             android:orientation="vertical">
             
             <TextView 
-                android:id="@+id/fans_num"
+                android:id="@+id/settings_fans_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="11"
@@ -129,8 +129,4 @@
         </LinearLayout>
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/settings_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
 </LinearLayout>

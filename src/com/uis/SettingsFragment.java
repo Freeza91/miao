@@ -8,16 +8,22 @@ import java.util.HashMap;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
-import com.adapter.LoadMoreAdapter;
+import com.adapters.LoadMoreAdapter;
+import com.adapters.SettingsFragmentViewPgaer;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.meimiao.R;
 import com.models.V2exApiJsonExampleModel;
 import com.nets.MainActivityHttp;
 
@@ -28,19 +34,64 @@ public class SettingsFragment extends BaseFragment implements
 
 	private RequestQueue mQueue;
 	private Context context;
+	private ViewPager settings_viewpager;
+	private LinearLayout settings_picture, settings_topic, settings_followers,
+			settings_fans;
+	private TextView settings_picture_num, settings_topic_num,
+			settings_followers_num, settings_fans_num;
+	private View settings_picture_divider, settings_topic_divider,
+			settings_followers_divider, settings_fans_divider;
+
+	private ArrayList<Fragment> viewpagerList;
+	private SettingsFragmentViewPgaer settings_adapter;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		View view = super.onCreateView(inflater, container, savedInstanceState);
+		super.onCreateView(inflater, container, savedInstanceState);
+
+		View view = inflater.inflate(R.layout.settings, null, false);
+		initView(view);
 		initData();
+		addListener();
 		return view;
 	}
 
 	public SettingsFragment(Context context) {
 		this.context = context;
+	}
 
+	private void initView(View view) {
+		settings_viewpager = (ViewPager) view
+				.findViewById(R.id.settings_viewpager);
+
+		settings_picture = (LinearLayout) view.findViewById(R.id.settings_picture);
+		settings_topic = (LinearLayout) view.findViewById(R.id.settings_topic);
+		settings_followers = (LinearLayout) view.findViewById(R.id.settings_followers);
+		settings_fans = (LinearLayout) view.findViewById(R.id.settings_fans);
+		
+		settings_picture_num = (TextView) view.findViewById(R.id.settings_picture_num);
+		settings_topic_num = (TextView) view
+				.findViewById(R.id.settings_topic_num);
+		settings_followers_num = (TextView) view
+				.findViewById(R.id.settings_followers_num);
+		settings_fans_num = (TextView) view
+				.findViewById(R.id.settings_fans_num);
+		
+		settings_picture_divider = (View) view.findViewById(R.id.settings_picture_divider);
+		settings_topic_divider = (View) view.findViewById(R.id.settings_topic_divider);
+		settings_followers_divider = (View) view.findViewById(R.id.settings_followers_divider);
+		settings_fans_divider = (View) view.findViewById(R.id.settings_fans_divider);
+
+		viewpagerList = new ArrayList<Fragment>();
+		viewpagerList.add(new SettingsFragmentPicture());
+		viewpagerList.add(new SettingsFragmentTopic());
+		viewpagerList.add(new SettingsFragmentFollowers());
+		viewpagerList.add(new SettingsFragmentFans());
+		settings_adapter = new SettingsFragmentViewPgaer(getActivity()
+				.getSupportFragmentManager(), viewpagerList);
+		settings_viewpager.setAdapter(settings_adapter);
 	}
 
 	private void initData() {
@@ -58,10 +109,12 @@ public class SettingsFragment extends BaseFragment implements
 		loadmore.setAdapter(adapter);
 	}
 
+	private void addListener(){
+
+	}
 	@Override
 	public void onErrorResponse(VolleyError error) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -90,7 +143,6 @@ public class SettingsFragment extends BaseFragment implements
 		mQueue.add(new MainActivityHttp(this, this));
 
 		refresh.setRefreshing(false);
-
 	}
 
 	@Override

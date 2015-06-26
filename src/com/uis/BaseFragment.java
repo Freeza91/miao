@@ -4,16 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.adapter.LoadMoreAdapter;
+import com.adapters.LoadMoreAdapter;
 import com.meimiao.R;
 
 @SuppressLint("NewApi")
@@ -23,8 +22,8 @@ public class BaseFragment extends Fragment implements
 	protected SwipeRefreshLayout refresh;
 	protected LoadMoreListView loadmore;
 	protected ArrayList<HashMap<String, String>> list;
+	protected HashMap<String, String> map;
 	protected LoadMoreAdapter adapter;
-
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +33,6 @@ public class BaseFragment extends Fragment implements
 		View view = inflater.inflate(R.layout.base_fragment, container, false);
 		initView(view);
 
-		Log.d("hello", "hello basefragemt");
 		return view;
 	}
 	
@@ -57,5 +55,6 @@ public class BaseFragment extends Fragment implements
 	public void loadMore() {
 		// TODO Auto-generated method stub
 	}
+
 
 }

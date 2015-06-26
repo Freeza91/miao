@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.adapter.LoadMoreAdapter;
+import com.adapters.LoadMoreAdapter;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -48,7 +48,7 @@ public class NotifFragment extends BaseFragment implements
 
 		list = new ArrayList<HashMap<String, String>>();
 		for (int i = 0; i < 20; i++) {
-			HashMap<String, String> map = new HashMap<String, String>();
+			map = new HashMap<String, String>();
 			map.put("key", "this is " + i);
 			list.add(map);
 		}
