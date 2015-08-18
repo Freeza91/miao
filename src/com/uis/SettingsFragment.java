@@ -10,6 +10,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,11 +40,11 @@ public class SettingsFragment extends BaseFragment implements
 			settings_fans;
 	private TextView settings_picture_num, settings_topic_num,
 			settings_followers_num, settings_fans_num;
-	private View settings_picture_divider, settings_topic_divider,
-			settings_followers_divider, settings_fans_divider;
-
+	private View settings_divider;
+	
 	private ArrayList<Fragment> viewpagerList;
 	private SettingsFragmentViewPgaer settings_adapter;
+	private int currentIndex;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,10 +80,7 @@ public class SettingsFragment extends BaseFragment implements
 		settings_fans_num = (TextView) view
 				.findViewById(R.id.settings_fans_num);
 		
-		settings_picture_divider = (View) view.findViewById(R.id.settings_picture_divider);
-		settings_topic_divider = (View) view.findViewById(R.id.settings_topic_divider);
-		settings_followers_divider = (View) view.findViewById(R.id.settings_followers_divider);
-		settings_fans_divider = (View) view.findViewById(R.id.settings_fans_divider);
+		settings_divider = (View) view.findViewById(R.id.settings_divider);
 
 		viewpagerList = new ArrayList<Fragment>();
 		viewpagerList.add(new SettingsFragmentPicture());
@@ -110,7 +108,8 @@ public class SettingsFragment extends BaseFragment implements
 	}
 
 	private void addListener(){
-
+		settings_viewpager
+				.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
 	@Override
 	public void onErrorResponse(VolleyError error) {
@@ -160,4 +159,25 @@ public class SettingsFragment extends BaseFragment implements
 		mQueue.add(new MainActivityHttp(this, this));
 	}
 
+	private class MyOnPageChangeListener implements OnPageChangeListener {
+
+		@Override
+		public void onPageScrollStateChanged(int arg0) {
+			// TODO Auto-generated method stub
+		}
+
+		@Override
+		public void onPageScrolled(int arg0, float arg1, int arg2) {
+			// TODO Auto-generated method stub
+			// LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams)
+			// .getLayoutParams();
+		}
+
+		@Override
+		public void onPageSelected(int arg0) {
+			// TODO Auto-generated method stub
+			currentIndex = arg0;
+		}
+
+	}
 }

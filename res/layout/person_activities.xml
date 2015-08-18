@@ -31,14 +31,6 @@
                 android:text="照片"
                 android:gravity="center"
                 />
-               
-		    <View 
-		        android:id="@+id/settings_picture_divider"
-		        android:layout_width="match_parent"
-		        android:layout_height="1dp"
-		        android:background="#FF0000"
-		        android:visibility="gone"/>
-		    
         </LinearLayout>
         
         <LinearLayout 
@@ -62,12 +54,6 @@
                 android:text="帖子"
                 android:gravity="center"
                 />
-           <View 
-                android:id="@+id/settings_topic_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#FF0000"
-                android:visibility="gone"/> 
         </LinearLayout>
         
         <LinearLayout 
@@ -91,12 +77,6 @@
                 android:text="关注"
                 android:gravity="center"
                 />
-          <View 
-                android:id="@+id/settings_followers_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#FF0000"
-                android:visibility="gone"/>     
         </LinearLayout>
         
         <LinearLayout
@@ -120,13 +100,13 @@
                 android:text="粉丝"
                 android:gravity="center"
                 />
-           <View 
-                android:id="@+id/settings_fans_divider"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#FF0000"
-                android:visibility="gone"/> 
         </LinearLayout>
     </LinearLayout>
-
+    
+    <View 
+       android:id="@+id/settings_divider"
+       android:layout_width="match_parent"
+       android:layout_height="1dp"
+       android:background="#FF0000"/> 
+       
 </LinearLayout>
