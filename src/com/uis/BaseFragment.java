@@ -24,6 +24,8 @@ public class BaseFragment extends Fragment implements
 	protected ArrayList<HashMap<String, String>> list;
 	protected HashMap<String, String> map;
 	protected LoadMoreAdapter adapter;
+	protected final int REFRESH = 0, LOADMORE = 1;
+	protected int UpdateStatus = REFRESH;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +57,5 @@ public class BaseFragment extends Fragment implements
 	public void loadMore() {
 		// TODO Auto-generated method stub
 	}
-
 
 }
