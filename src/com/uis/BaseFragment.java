@@ -44,6 +44,13 @@ public class BaseFragment extends Fragment implements
 		loadmore = (LoadMoreListView) view
 				.findViewById(R.id.base_fragment_load_more_listview);
 
+		refresh.post(new Runnable() {
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				refresh.setRefreshing(true);
+			}
+		});
 		refresh.setOnRefreshListener(this);
 		loadmore.setLoadMoreListen(this);
 	}
